@@ -1,0 +1,67 @@
+[
+    {
+        "title": "Dashboard",
+        "icon": "bi bi-grid-fill",
+        "path": "/Dashboard/"
+    },
+    
+    {
+        "title": "User Management",
+        "icon": "bi bi-people-fill",
+        "childrens": [
+            {
+                "title": "Instructor Management",
+                "path": "/InstructorManagement"
+            },
+            {
+                "title": "Country Admin",
+                "path": "/CountryAdmin"
+            }
+        ]
+    },
+    {
+        "title": "Center Management",
+        "icon": "bi bi-building",
+        "path": "/CenterManagement/"
+    },
+    {
+        "title": "Countries",
+        "icon": "bi bi-globe",
+        "path": "/Countries/"
+    },
+    {
+        "title": "Audio File Management",
+        "icon": "bi bi-headphones",
+        "childrens": [
+            {
+                "title": "Search",
+                "path": "/search"
+            },
+            {
+                "title": "History",
+                "path": "/history"   
+            }
+        ]
+    },
+  
+    {
+        "title": "Custom Notification",
+        "icon": "bi bi-bell-fill",
+        "path": "/notifcation"
+    },
+    {
+        "title": "Report",
+        "icon": "bi bi-bar-chart-fill",
+        "path": "/Report"
+    },
+    {
+        "title": "Feedback Received",
+        "icon": "bi bi-chat-left-dots",
+        "path": "/Feedback"
+    },
+    {
+        "title": "Content Management",
+        "icon": "bi bi-pencil-square",
+        "path": "/Content Management"
+    }
+]

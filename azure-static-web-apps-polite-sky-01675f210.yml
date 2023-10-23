@@ -1,0 +1,48 @@
+name: Azure Static Web Apps CI/CD
+
+pr:
+  branches:
+    include:
+      - master
+      - staging
+      - dev
+trigger:
+  branches:
+    include:
+      - master
+      - staging
+      - dev
+
+jobs:
+- job: build_and_deploy_job
+  displayName: Build and Deploy Job
+  condition: or(eq(variables['Build.Reason'], 'Manual'), eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.Reason'], 'IndividualCI'))
+  pool:
+    vmImage: ubuntu-latest
+
+  variables:
+    - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/staging') }}:
+      - group: Azure-Static-Web-Apps-polite-sky-01675f210-variable-group
+      - group: staging-variable-group
+    - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+      - group: Azure-Static-Web-Apps-polite-sky-01675f210-variable-group
+      - group: production-variable-group
+    - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/dev') }}:
+      - group: Azure-Static-Web-Apps-polite-sky-01675f210-variable-group
+      - group: dev-variable-group
+
+  steps:
+  - checkout: self
+    submodules: true
+  - task: AzureStaticWebApp@0
+    inputs:
+      azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_SKY_01675F210)
+      app_location: "/" # App source code path
+      api_location: "" # Api source code path - optional
+      output_location: "build" # Built app content directory - optional
+      production_branch: 'master'
+    env:
+      REACT_APP_MSAL_CLIENT_ID: $(msalClientId)
+      REACT_APP_MSAL_AUTHORITY: $(msalAuthority)
+      REACT_APP_MSAL_KNOWN_AUTHORITIES: $(msalKnownAuthorities)
+      REACT_APP_MSAL_REDIRECT_URI: $(msalRedirectUri)
